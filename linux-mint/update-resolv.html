@@ -1,0 +1,13 @@
+<!--
+title: Linux Mint 21: Update resolv.conf
+description: 
+published: true
+date: 2023-12-16T23:00:05.720Z
+tags: "linux mint"
+editor: ckeditor
+dateCreated: 2023-12-16T23:00:02.544Z
+-->
+
+<p>To update the resolv.conf you need to actually update the <code>/etc/systemd/resolved.conf</code> file.</p>
+<pre><code class="language-plaintext">sudo vi /etc/systemd/resolved.conf
+sudo service systemd-resolved restart</code></pre>

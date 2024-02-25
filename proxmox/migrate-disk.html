@@ -1,0 +1,20 @@
+<!--
+title: Migrate VM Disk
+description: How to move a VM disk to a new datastore
+published: true
+date: 2023-06-08T17:38:45.238Z
+tags: proxmox
+editor: ckeditor
+dateCreated: 2023-06-08T15:27:08.909Z
+-->
+
+<p>When creating a new VM, I often times forgot to set the datastore from <strong>LOCAL </strong>to <strong>VMSTORE1</strong>. &nbsp;This can be easily fixed by the following:</p>
+<ol>
+  <li>Select the VM you want to migrate the disk on.</li>
+  <li>Under Hardware, select the Hard Disk you want to move.</li>
+  <li>At the top, click on Disk Action.</li>
+  <li>Select Move Disk</li>
+  <li>Select the new location and click OK.</li>
+</ol>
+<p>&nbsp;</p>
+<figure class="image"><img src="/screen-move-disk.png"></figure>
