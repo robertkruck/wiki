@@ -2,10 +2,10 @@
 title: RedHat 9 Ansible Installation
 description: 
 published: true
-date: 2023-08-31T15:35:57.490Z
+date: 2024-05-26T20:34:18.423Z
 tags: ansible, redhat
 editor: ckeditor
-dateCreated: 2023-06-18T17:25:35.411Z
+dateCreated: 2024-05-26T20:00:34.991Z
 -->
 
 <h2>VM:</h2>
@@ -30,8 +30,9 @@ dateCreated: 2023-06-18T17:25:35.411Z
 # mount -a</code></pre>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<pre><code class="language-plaintext"># subscription-manager repos --enable  ansible-automation-platform-2.4-for-rhel-9-x86_64-rpms
-# dnf install ansible-core ansible-navigator ansible-lint</code></pre>
+<pre><code class="language-plaintext"># sudo dnf install python3-pip
+# python3 -m pip install --user ansible
+pip3 install ansible-lint</code></pre>
 <p>&nbsp;</p>
 <h3>Configure Ansible</h3>
 <pre><code class="language-plaintext"># ansible-config init --disabled -t all &gt; ansible.cfg</code></pre>
