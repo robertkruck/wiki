@@ -2,7 +2,7 @@
 title: Backup Proxmox VM to Synology NAS
 description: 
 published: true
-date: 2024-05-27T09:52:07.867Z
+date: 2024-05-27T10:00:50.023Z
 tags: proxmox, synology, nas
 editor: ckeditor
 dateCreated: 2024-05-27T09:52:07.867Z
@@ -29,7 +29,55 @@ dateCreated: 2024-05-27T09:52:07.867Z
 <p>4. Select <strong>NFS Permissions </strong>then <strong>Create.</strong></p>
 <figure class="image image_resized" style="width:71.78%;"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology3.jpg" alt="editing the nfs persmissions" srcset="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology3.jpg 840w, https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology3-300x61.jpg 300w, https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology3-768x156.jpg 768w" sizes="100vw" width="840"></figure>
 <p>5. In the NFS rule, add the <strong>IP Address </strong>of your Proxmox server. Leave the privilege as <strong>Read/Write </strong>and then select <strong>Allow users to access mounted subfolders.</strong></p>
-<figure class="image image_resized image-style-align-left" style="width:65.7%;"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology4-1.jpg" alt="setting an ip address that has read/write permissions to dsm" srcset="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology4-1.jpg 524w, https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology4-1-300x221.jpg 300w" sizes="100vw" width="524"></figure>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology4-1.jpg" alt="setting an ip address that has read/write permissions to dsm"></figure>
+<p>6. <strong>Save </strong>everything and then log in to Proxmox.</p>
+<h2><strong>2. Proxmox Configuration</strong></h2>
+<p>Now that our Synology NAS has been configured, we will need to set up Proxmox to read/write from our Synology NAS. We’ll then be able to backup Proxmox to a Synology NAS.</p>
+<ol>
+  <li>Select <strong>Datacenter </strong>then <strong>Storage.</strong></li>
+</ol>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology5.jpg" alt="how to backup proxmox to a synology nas - adding storage in proxmox"></figure>
+<p>2. Select <strong>Add </strong>then <strong>NFS.</strong></p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology6.jpg" alt="adding nfs storage in proxmox"></figure>
+<p>3. At the NFS screen, create an <strong>ID, </strong>then enter the <strong>IP Address</strong> of your Synology NAS server. In the <strong>Export </strong>drop-down menu, the location of your Proxmox folder should automatically appear. In the <strong>Content </strong>drop-down, select <strong>ALL </strong>entries. You can then select <strong>Add.</strong></p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology7.jpg" alt="specifying an id, server IP address, then selecting an nfs share in proxmox"></figure>
+<p>4. Proxmox should now show the Synology NAS Storage that we created above.</p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology8.jpg" alt="confirming the storage is now in proxmox"></figure>
+<h2><strong>3. Back up an Individual Virtual Machine</strong></h2>
+<p>Now that we configured Proxmox and our Synology NAS, we can easily back up a virtual machine.</p>
+<ol>
+  <li>Select the virtual machine you’d like to back up, then select <strong>Backup.</strong></li>
+</ol>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology9.jpg" alt="backing up a vm to a synology nas"></figure>
+<p>2. In the backup tab, select the Synology NAS storage location in the top right. This will ensure that we back up to the correct location.</p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology10.jpg" alt="selecting the synology storage in proxmox"></figure>
+<p>3. Select <strong>Backup now </strong>in the top left corner.</p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology11.jpg" alt="viewing the backup tab in proxmox"></figure>
+<p>4. Select your <strong>Storage</strong>, <strong>Mode </strong>and <strong>Compression</strong>, then select <strong>Backup </strong>and the backup will start!</p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology12.jpg" alt="setting the backup settings in proxmox"></figure>
+<h2><strong>3. Automatic Backups – How to Backup Proxmox to a Synology NAS</strong></h2>
+<p>You can easily configure Automatic backups in Proxmox for all of your virtual machines if you’d like. This will automatically back up every virtual machine on a specific schedule.</p>
+<ol>
+  <li>Select <strong>Datacenter </strong>then <strong>Backup, </strong>then select <strong>Add.</strong></li>
+</ol>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology13.jpg" alt="automatically backing up VMs to a synology nas"></figure>
+<p>2. Select the <strong>Storage </strong>for your Synology NAS, then specify the <strong>Schedule</strong>, <strong>Selection mode</strong>, <strong>Compression,</strong> and <strong>Mode</strong>.</p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology14.jpg" alt="selecting the storage and when backups should occur in proxmox"></figure>
+<p>3. You can also change the retention policy to only keep a certain number of versions by selecting the <strong>Retention </strong>tab. <strong>Without specifying a retention policy, all backups will be stored which will drastically reduce storage space on your Synology NAS over time.</strong></p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/05/ProxmoxSynology20.jpg" alt="modifying the retention in proxmox"></figure>
+<p>4. Your virtual machines will now back up to your Synology NAS automatically after you select <strong>Create</strong>!</p>
+<h2><strong>4. Restoring a Virtual Machine from a Backup</strong></h2>
+<p>After the backups have been created, you can easily restore your virtual machine to one of them if you ever need to.</p>
+<ol>
+  <li>Select the virtual machine, then <strong>Backup.</strong></li>
+</ol>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology15.jpg" alt="restoring a vm in proxmox by accessing the backup tab"></figure>
+<p>2. Select the<strong> Synology NAS storage </strong>in the top right under <strong>Storage.</strong></p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology16.jpg" alt="viewing the synology storage for backups"></figure>
+<p>3. Select the snapshot you’d like to restore to, then select <strong>Restore.</strong></p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology17.jpg" alt="selecting a backup and restoring it"></figure>
+<p>4. All information can stay as default, then select<strong> Restore.</strong></p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology18.jpg" alt="restoring a vm in proxmox"></figure>
+<p>5. You will receive a message that this will permanently erase the existing virtual machine. If you agree, select <strong>Yes. </strong>Your virtual machine will now be restored from the backup you selected!</p>
+<figure class="image"><img src="https://www.wundertech.net/wp-content/uploads/2022/04/ProxmoxSynology19.jpg" alt="agreeing to restore a vm in proxmox"></figure>
 <p>&nbsp;</p>
