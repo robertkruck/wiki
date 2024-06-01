@@ -1,0 +1,19 @@
+<!--
+title: Gitlab Installation
+description: 
+published: true
+date: 2024-06-01T17:37:03.160Z
+tags: gitlab
+editor: ckeditor
+dateCreated: 2024-06-01T17:37:03.160Z
+-->
+
+<p>&nbsp;</p>
+<p>Gitlab data is stored in /var/opt/gitlab &nbsp;Create LVM volume to mount this filesystem.</p>
+<p>Create backup on NAS to /var/opt/gitlab-backups/</p>
+<p>Firewalld configuration with NAS mount</p>
+<pre><code class="language-plaintext">sudo firewall-cmd --permanent --new-zone=nfs-clients
+ sudo firewall-cmd --permanent --zone=nfs-clients --add-source=192.168.1.202
+ sudo firewall-cmd --permanent --zone=nfs-clients --add-service=nfs
+ sudo firewall-cmd --reload
+ </code></pre>
