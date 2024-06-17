@@ -1,0 +1,16 @@
+<!--
+title: Install CA Server
+description: 
+published: true
+date: 2024-06-17T20:40:33.122Z
+tags: redhat, ca-server
+editor: ckeditor
+dateCreated: 2024-06-17T20:40:33.122Z
+-->
+
+<p>Installing a CA Server on RHEL 9</p>
+<p>Perform a minimal install of RHEL 9 and do the latest updates.</p>
+<p>Install the epel repo and install easy-rsa</p>
+<pre><code class="language-plaintext">sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+sudo dnf install easy-rsa</code></pre>
