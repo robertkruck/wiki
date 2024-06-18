@@ -2,7 +2,7 @@
 title: Install CA Server
 description: 
 published: true
-date: 2024-06-17T20:45:47.613Z
+date: 2024-06-18T22:29:28.135Z
 tags: redhat, ca-server
 editor: ckeditor
 dateCreated: 2024-06-17T20:40:33.122Z
@@ -73,7 +73,8 @@ nano vars
 </code></pre>
 <p>Copy</p>
 <p>Once the file is opened, paste in the following lines and edit each highlighted value to reflect your own organization info. The important part here is to ensure that you do not leave any of the values blank:</p>
-<pre><code class="language-plaintext">~/easy-rsa/varsset_var EASYRSA_REQ_COUNTRY    "US"
+<pre><code class="language-plaintext">~/easy-rsa/vars
+set_var EASYRSA_REQ_COUNTRY    "US"
 set_var EASYRSA_REQ_PROVINCE   "NewYork"
 set_var EASYRSA_REQ_CITY       "New York City"
 set_var EASYRSA_REQ_ORG        "DigitalOcean"
