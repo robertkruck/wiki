@@ -1,0 +1,40 @@
+<!--
+title: Ansible Troubleshooting
+description: 
+published: true
+date: 2025-06-07T01:01:59.472Z
+tags: ansible
+editor: ckeditor
+dateCreated: 2025-06-07T01:01:59.472Z
+-->
+
+<h1>Excluding macOS-specific hidden files from ansible-lint</h1>
+<p>When working with Ansible playbooks on macOS, you might encounter hidden files like <code>.DS_Store</code> or resource forks (<code>._*</code> files) that can interfere with <code>ansible-lint</code>. These files are not part of your Ansible content and should be excluded from the linting process.&nbsp;</p>
+<p>Here's how to exclude them from <code>ansible-lint</code>:</p>
+<p><strong>1. Use the </strong><code><strong>--exclude</strong></code><strong> command line argument:</strong>&nbsp;</p>
+<p>You can exclude specific paths or files directly when running <code>ansible-lint</code>from the command line. To exclude resource fork files and <code>.DS_Store</code>, you can use the following command:&nbsp;</p>
+<p>bash</p>
+<p>&nbsp;</p>
+<pre><code class="language-plaintext">ansible-lint --exclude .DS_Store --exclude "**/._*"  .
+</code></pre>
+<ul>
+  <li><code><strong>--exclude .DS_Store</strong></code>: Excludes all <code>.DS_Store</code> files in the current directory and its subdirectories.</li>
+  <li><code><strong>--exclude "**/._*"</strong></code>: Uses a glob pattern to exclude all resource fork files (<code>._*</code>) in the current directory and any nested subdirectories.</li>
+  <li><code><strong>.</strong></code>: Tells <code>ansible-lint</code> to lint the current directory.&nbsp;</li>
+</ul>
+<p><strong>2. Configure a </strong><code><strong>.ansible-lint</strong></code><strong> file with </strong><code><strong>exclude_paths</strong></code><strong>:</strong>&nbsp;</p>
+<p>For a more permanent solution, you can create or modify a <code>.ansible-lint</code>configuration file in the root of your project and specify the paths to exclude.&nbsp;</p>
+<p>yaml</p>
+<p>&nbsp;</p>
+<pre><code class="language-plaintext">---
+exclude_paths:
+  - ".DS_Store"
+  - "**/._*"
+</code></pre>
+<p>This configuration will tell <code>ansible-lint</code> to skip these files every time you run it in your project.&nbsp;</p>
+<p><strong>Explanation:</strong></p>
+<ul>
+  <li><code><strong>.ansible-lint</strong></code><strong> file:</strong> A configuration file used by <code>ansible-lint</code> to control its behavior.</li>
+  <li><code><strong>exclude_paths</strong></code><strong>:</strong> A list of paths or file patterns to exclude from linting.</li>
+  <li><code><strong>**/._*</strong></code>: A glob pattern that matches any directory (<code>**</code>) followed by any file starting with <code>._</code> (<code>._*</code>).&nbsp;</li>
+</ul>
